@@ -34,6 +34,6 @@ public class OrderController {
     public ResponseEntity<Response> processNewOrders(){
 
         orderService.processBatchOrders();
-        return new ResponseEntity<>(new Response(true, StatusCode.CREATED,"Successfully Process Orders"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new Response(true, StatusCode.CREATED,"Create Product successfully", id), HttpStatus.CREATED);
     }
 }

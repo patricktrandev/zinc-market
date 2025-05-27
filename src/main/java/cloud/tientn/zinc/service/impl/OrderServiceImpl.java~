@@ -100,14 +100,7 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder6=orderRepository.findById(41L).orElseThrow(()-> new ResourceNotFoundException("Order", 39L));
         Order savedOrder7=orderRepository.findById(42L).orElseThrow(()-> new ResourceNotFoundException("Order", 39L));
 
-        List<Order> orderQueue = new ArrayList<>();
-        orderQueue.add(savedOrder1);
-        orderQueue.add(savedOrder2);
-        orderQueue.add(savedOrder3);
-        orderQueue.add(savedOrder4);
-        orderQueue.add(savedOrder5);
-        orderQueue.add(savedOrder6);
-        orderQueue.add(savedOrder7);
+        List<Order> orderQueue = List.of(savedOrder1, savedOrder2, savedOrder3, savedOrder4, savedOrder5, savedOrder6, savedOrder7);
         PriorityHelper.mergeSortOrders(orderQueue);
         KieSession kieSession = droolsThread.getKieSession();
         try{

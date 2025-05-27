@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+
+
+    <kbase packages="rules.processOrder" eventProcessingMode="stream">
+        <ksession name="ProcessOrderAutomated"/>
+    </kbase>
+</kmodule>

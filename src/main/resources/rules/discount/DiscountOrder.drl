@@ -1,0 +1,39 @@
+package rules.discountOrder;
+//generated from Decision Table
+import cloud.tientn.zinc.model.*;
+// rule values at A10, header at A5
+rule "r1"
+	when
+		$customer: Customer(expenditure >= 0, expenditure < 1500, $customer.getNumberTotalOrder() >= 10)
+		$order: Order($order.checkId($customer.getId()) == "true", status == "NEW")
+	then
+		$order.setDiscount(1.0);
+end
+
+// rule values at A11, header at A5
+rule "r2"
+	when
+		$customer: Customer(expenditure >= 1500, expenditure < 5000, $customer.getNumberTotalOrder() >= 25)
+		$order: Order($order.checkId($customer.getId()) == "true", status == "NEW")
+	then
+		$order.setDiscount(3.0);
+end
+
+// rule values at A12, header at A5
+rule "r3"
+	when
+		$customer: Customer(expenditure >= 5000, expenditure < 7500, $customer.getNumberTotalOrder() >= 30)
+		$order: Order($order.checkId($customer.getId()) == "true", status == "NEW")
+	then
+		$order.setDiscount(5.0);
+end
+
+// rule values at A13, header at A5
+rule "r4"
+	when
+		$customer: Customer(expenditure >= 7500, expenditure < 1000000, $customer.getNumberTotalOrder() >= 50)
+		$order: Order($order.checkId($customer.getId()) == "true", status == "NEW")
+	then
+		$order.setDiscount(7.0);
+end
+

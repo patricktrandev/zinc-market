@@ -29,7 +29,6 @@ public class OrderMapper {
         order.setProcessingDate(orderDto.getProcessingDate());
         order.setShippingAddress(orderDto.getShippingAddress());
         order.setOrderDate(orderDto.getOrderDate());
-        order.setPriority(orderDto.getPriority());
         //order.setCoupon();
         //order.setCustomer(CustomerMapper.convertToModel(orderDto.getCustomerDto()));
         return order;

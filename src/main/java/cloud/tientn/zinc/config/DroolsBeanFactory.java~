@@ -1,0 +1,123 @@
+package cloud.tientn.zinc.config;
+
+import org.kie.api.KieBase;
+import org.kie.api.KieServices;
+import org.kie.api.builder.*;
+import org.kie.api.definition.KiePackage;
+import org.kie.api.definition.rule.Rule;
+import org.kie.api.event.rule.ObjectDeletedEvent;
+import org.kie.api.event.rule.ObjectInsertedEvent;
+import org.kie.api.event.rule.ObjectUpdatedEvent;
+import org.kie.api.event.rule.RuleRuntimeEventListener;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.StatelessKieSession;
+import org.kie.internal.io.ResourceFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Configuration
+public class DroolsBeanFactory {
+    public KieContainer getKieContainer(){
+        KieContainer kieContainer = KieServices.Factory.get().getKieClasspathContainer();
+        return kieContainer;
+    }
+
+//    private KieFileSystem getKieFileSystem()  {
+//        KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
+//        kieFileSystem.write(ResourceFactory.newClassPathResource("rules/Discount_Order.drl"));
+//        return kieFileSystem;
+//    }
+//
+//    public KieSession getKieSession(){
+//        KieBuilder kb = kieServices.newKieBuilder(getKieFileSystem());
+//        kb.buildAll();
+//        KieRepository kieRepository = kieServices.getRepository();
+//        ReleaseId releaseId=kieRepository.getDefaultReleaseId();
+//        KieContainer kContainer = kieServices.newKieContainer(releaseId);
+//        return kContainer.newKieSession();
+//    }
+//    @Bean
+//    public StatelessKieSession getKieSession(){
+//        KieContainer kieContainer= getKieContainer();
+//        StatelessKieSession kieSession = kieContainer.newStatelessKieSession("CalculateDiscount");
+//        KieBase kieBase = kieSession.getKieBase();
+//        List<Rule> rules = kieBase.getKiePackages().stream()
+//                .flatMap(pkg -> pkg.getRules().stream())
+//                .collect(Collectors.toList());
+//        System.out.println("Rules: " + rules);
+        kieSession.addEventListener(new RuleRuntimeEventListener() {
+            @Override
+            public void objectInserted(ObjectInsertedEvent objectInsertedEvent) {
+                System.out.println("===> "+ objectInsertedEvent.getObject()+" inserted");
+            }
+
+            @Override
+            public void objectUpdated(ObjectUpdatedEvent objectUpdatedEvent) {
+                System.out.println("===> "+ objectUpdatedEvent+" updated");
+            }
+
+            @Override
+            public void objectDeleted(ObjectDeletedEvent objectDeletedEvent) {
+                System.out.println("===> "+ objectDeletedEvent.getOldObject()+" deleted");
+            }
+        });
+//        return kieSession;
+//    }
+
+        @Bean
+    public StatelessKieSession getKieSession(){
+        KieServices ks = KieServices.Factory.get();
+        KieFileSystem kfs = ks.newKieFileSystem();
+        //kfs.write(ResourceFactory.newClassPathResource("rules/section9/step1/VisaApplicationRules.drl.xls"));
+        kfs.write(ResourceFactory.newClassPathResource("rules/discountOrder/DiscountOrder.drl.xls"));
+
+        KieBuilder kb = ks.newKieBuilder(kfs);
+        kb.buildAll();
+        KieRepository kieRepository = ks.getRepository();
+        ReleaseId releaseId=kieRepository.getDefaultReleaseId();
+        KieContainer kContainer = ks.newKieContainer(releaseId);
+        StatelessKieSession kieSession = kContainer.newStatelessKieSession();
+        KieBase kieBase = kieSession.getKieBase();
+
+        List<Rule> rules = kieBase.getKiePackages().stream()
+                .flatMap(pkg -> pkg.getRules().stream())
+                .collect(Collectors.toList());
+        System.out.println("Rules: " + rules);
+        if (kieBase == null) {
+            System.err.println("WARNING: KieBase is null!");
+        } else {
+            System.out.println("KieBase contains " + kieBase.getKiePackages().size() + " packages");
+
+            // Alternative way to print package names
+            for (KiePackage pkg : kieBase.getKiePackages()) {
+                System.out.println("Package: " + pkg.getName());
+                System.out.println("  Rules count: " + pkg.getRules().size());
+                if (pkg.getRules().isEmpty()) {
+                    System.out.println("  WARNING: No rules in package " + pkg.getName());
+                }
+            }
+        }
+            kieSession.addEventListener(new RuleRuntimeEventListener() {
+
+                @Override
+                public void objectInserted(ObjectInsertedEvent objectInsertedEvent) {
+                    System.out.println("===> "+ objectInsertedEvent.getObject()+" inserted");
+                }
+
+                @Override
+                public void objectUpdated(ObjectUpdatedEvent objectUpdatedEvent) {
+                    System.out.println("===> "+ objectUpdatedEvent+" updated");
+                }
+
+                @Override
+                public void objectDeleted(ObjectDeletedEvent objectDeletedEvent) {
+                    System.out.println("===> "+ objectDeletedEvent.getOldObject()+" deleted");
+                }
+            });
+        return kieSession;
+    }
+
+}
