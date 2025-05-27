@@ -1,0 +1,79 @@
+package rules;
+
+import cloud.tientn.zinc.model.Order;
+import cloud.tientn.zinc.model.Customer;
+
+
+
+rule "Apply PLATINUM loyalty membership"
+    salience 100
+    when
+        $customer : Customer(expenditure > 15000, getNumberTotalOrder() >= 55)
+    then
+        $customer.setMembership("PLATINUM");
+        System.out.println("Applied PLATINUM loyalty for customer: " + $customer.getUsername());
+end
+
+rule "Apply GOLD loyalty membership"
+    salience 90
+    when
+        $customer : Customer(expenditure > 10000, getNumberTotalOrder() >= 25)
+    then
+        $customer.setMembership("GOLD");
+        System.out.println("Applied GOLD loyalty for customer: " + $customer.getUsername());
+end
+
+rule "Apply SILVER loyalty membership"
+    salience 80
+    when
+        $customer : Customer(expenditure > 7000, getNumberTotalOrder() > 10)
+    then
+        $customer.setMembership("SILVER");
+        System.out.println("Applied SILVER loyalty for customer: " + $customer.getUsername());
+end
+
+rule "Apply CLASSIC loyalty membership"
+    salience 70
+    when
+        $customer : Customer(expenditure > 3000, getNumberTotalOrder() > 10)
+    then
+        $customer.setMembership("CLASSIC");
+        System.out.println("Applied CLASSIC loyalty for customer: " + $customer.getUsername());
+end
+
+// Discount rules - simplified since membership already validated conditions
+rule "Apply PLATINUM DISCOUNT"
+    when
+        $order : Order(status == "PROCESSING")
+        $customer : Customer(membership == "PLATINUM")
+    then
+        $order.setDiscount(6.0);
+        System.out.println("Applied 6% discount for PLATINUM customer: " + $customer.getUsername());
+end
+
+rule "Apply GOLD DISCOUNT"
+    when
+        $order : Order(status == "PROCESSING")
+        $customer : Customer(membership == "GOLD")
+    then
+        $order.setDiscount(5.0);
+        System.out.println("Applied 5% discount for GOLD customer: " + $customer.getUsername());
+end
+
+rule "Apply SILVER DISCOUNT"
+    when
+        $order : Order(status == "PROCESSING")
+        $customer : Customer(membership == "SILVER")
+    then
+        $order.setDiscount(4.0);
+        System.out.println("Applied 4% discount for SILVER customer: " + $customer.getUsername());
+end
+
+rule "Apply CLASSIC DISCOUNT"
+    when
+        $order : Order(status == "PROCESSING")
+        $customer : Customer(membership == "CLASSIC")
+    then
+        $order.setDiscount(3.0);
+        System.out.println("Applied 3% discount for CLASSIC customer: " + $customer.getUsername());
+end

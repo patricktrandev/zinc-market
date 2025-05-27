@@ -1,0 +1,49 @@
+package rules.processOrder;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.time.Duration;
+import cloud.tientn.zinc.utils.PriorityHelper;
+import cloud.tientn.zinc.model.*;
+declare TimeWaited
+    @role( event )
+    time : long
+end
+
+rule "Process order by priority and wait time"
+dialect "java"
+when
+    $order: Order(status == "NEW", $priority: priority, $createdAt: createdAt)
+
+
+        not Order(
+                status == "NEW",
+                this != $order
+
+            )
+then
+    System.out.println("Processing Order ID: " + $order.getId() + " Priority: " + $order.getPriority() + " Created At: " + $createdAt);
+    modify($order) {
+    setStatus("PROCESSING"),
+    setProcessingDate(LocalDateTime.now().plusDays(2))
+     }
+    //orderService.process($order); may call delivery service or send email
+    //delete($order);
+    long waitMillis = Duration.between($createdAt, LocalDateTime.now()).toMillis();
+    TimeWaited timeWaited = new TimeWaited(waitMillis);
+    insert(timeWaited);
+end
+
+
+rule "Report processing statistics"
+    dialect "java"
+	salience 100
+    timer(int: 0s 2s)
+when
+    $queue : List() from collect( Order() )
+    $events: List() from collect(TimeWaited() over window:time(4s))
+    $avg: Double() from accumulate(
+        TimeWaited($t: time) over window:time(4s),
+        average($t))
+then
+    System.out.println("Queue size: "+ $queue.size() +" Average wait time: " + $avg/1000 + "ms in the last 4 seconds.");
+end

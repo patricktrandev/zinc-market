@@ -16,7 +16,7 @@ public class OrderDto{
     Long id;
     String shippingAddress;
     LocalDateTime orderDate;
-    LocalDateTime processingDate;
+    Date processingDate;
     Double total;
     Double discount;
     String status;

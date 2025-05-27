@@ -1,0 +1,57 @@
+2025-05-28 04:50:44.016 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-05-28 04:50:44.062 [main] INFO  cloud.tientn.zinc.ZincApplication - Starting ZincApplication using Java 21.0.4 with PID 14312 (D:\2024_MICROSERVICE_LEARNING\DROOLS\zinc\target\classes started by admin in D:\2024_MICROSERVICE_LEARNING\DROOLS\zinc)
+2025-05-28 04:50:44.063 [main] INFO  cloud.tientn.zinc.ZincApplication - No active profile set, falling back to 1 default profile: "default"
+2025-05-28 04:50:45.053 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28 04:50:45.187 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 124 ms. Found 5 JPA repository interfaces.
+2025-05-28 04:50:45.944 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-28 04:50:45.959 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-28 04:50:45.961 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-28 04:50:45.962 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-28 04:50:46.041 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-28 04:50:46.042 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1934 ms
+2025-05-28 04:50:46.388 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28 04:50:46.432 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-28 04:50:46.472 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-05-28 04:50:46.700 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-28 04:50:46.724 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-28 04:50:46.990 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7be1e187
+2025-05-28 04:50:46.991 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-28 04:50:47.068 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.4.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-28 04:50:47.870 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-28 04:50:47.949 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28 04:50:48.160 [main] INFO  com.azure.core.http.netty.implementation.NettyUtility - {"az.sdk.message":"The following Netty versions were found on the classpath and have a mismatch with the versions used by azure-core-http-netty. If your application runs without issue this message can be ignored, otherwise please align the Netty versions used in your application. For more information, see https://aka.ms/azsdk/java/dependency/troubleshoot.","azure-netty-version":"4.1.118.Final","azure-netty-native-version":"2.0.70.Final","classpath-netty-version-io.netty:netty-common":"4.1.119.Final","classpath-netty-version-io.netty:netty-handler":"4.1.119.Final","classpath-netty-version-io.netty:netty-handler-proxy":"4.1.119.Final","classpath-netty-version-io.netty:netty-buffer":"4.1.119.Final","classpath-netty-version-io.netty:netty-codec":"4.1.119.Final","classpath-netty-version-io.netty:netty-codec-http":"4.1.119.Final","classpath-netty-version-io.netty:netty-codec-http2":"4.1.119.Final","classpath-netty-version-io.netty:netty-transport-native-unix-common":"4.1.119.Final","classpath-netty-version-io.netty:netty-transport-native-epoll":"4.1.119.Final","classpath-netty-version-io.netty:netty-transport-native-kqueue":"4.1.119.Final","classpath-native-netty-version-io.netty:netty-tcnative-boringssl-static":"2.0.70.Final"}
+2025-05-28 04:50:48.440 [main] INFO  org.drools.compiler.kie.builder.impl.ClasspathKieProject - Found kmodule: file:/D:/2024_MICROSERVICE_LEARNING/DROOLS/zinc/target/classes/META-INF/kmodule.xml
+2025-05-28 04:50:48.657 [main] WARN  org.drools.compiler.kie.builder.impl.ClasspathKieProject - Unable to find pom.properties in /D:/2024_MICROSERVICE_LEARNING/DROOLS/zinc/target/classes
+2025-05-28 04:50:48.666 [main] WARN  org.kie.maven.integration.embedder.MavenSettings - Environment variable M2_HOME is not set
+2025-05-28 04:50:50.164 [main] INFO  org.drools.compiler.kie.builder.impl.ClasspathKieProject - Recursed up folders, found and used pom.xml D:\2024_MICROSERVICE_LEARNING\DROOLS\zinc\pom.xml
+2025-05-28 04:50:50.166 [main] INFO  org.drools.compiler.kie.builder.impl.InternalKieModuleProvider - Creating KieModule for artifact cloud.tientn:zinc:0.0.1-SNAPSHOT
+2025-05-28 04:50:50.174 [main] INFO  org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: x7aa93f68x7d05x427ax9ff6x592b79ba1e7b
+2025-05-28 04:50:50.195 [main] WARN  org.drools.compiler.kie.builder.impl.KieBuilderImpl - File 'rules/discount/DiscountOrder.drl' is in folder 'rules/discount' but declares package 'rules.discountOrder'. It is advised to have a correspondance between package and folder names.
+2025-05-28 04:50:51.397 [main] INFO  org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: x7aa93f68x7d05x427ax9ff6x592b79ba1e7b
+2025-05-28 04:50:51.876 [main] INFO  org.springframework.data.jpa.repository.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-28 04:50:52.223 [main] INFO  org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: defaultKieBase
+2025-05-28 04:50:52.227 [main] WARN  org.drools.mvel.MVELConstraint - $customer is not relevant to this pattern, so it causes class reactivity. Consider placing this constraint in the original pattern if possible : $order.checkId($customer.getId()) == "true"
+2025-05-28 04:50:52.227 [main] WARN  org.drools.mvel.MVELConstraint - $customer is not relevant to this pattern, so it causes class reactivity. Consider placing this constraint in the original pattern if possible : $order.checkId($customer.getId()) == "true"
+2025-05-28 04:50:52.228 [main] WARN  org.drools.mvel.MVELConstraint - $customer is not relevant to this pattern, so it causes class reactivity. Consider placing this constraint in the original pattern if possible : $order.checkId($customer.getId()) == "true"
+2025-05-28 04:50:52.228 [main] WARN  org.drools.mvel.MVELConstraint - $customer is not relevant to this pattern, so it causes class reactivity. Consider placing this constraint in the original pattern if possible : $order.checkId($customer.getId()) == "true"
+2025-05-28 04:50:52.232 [main] INFO  org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: defaultKieBase
+2025-05-28 04:50:52.348 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28 04:50:52.960 [main] INFO  org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-05-28 04:50:53.028 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-28 04:50:53.043 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-28 04:50:53.056 [main] INFO  cloud.tientn.zinc.ZincApplication - Started ZincApplication in 9.427 seconds (process running for 10.192)
+2025-05-28 04:50:57.574 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28 04:50:57.574 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-28 04:50:57.575 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-28 05:21:08.292 [SpringApplicationShutdownHook] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-28 05:21:08.296 [tomcat-shutdown] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-28 05:21:08.302 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28 05:21:08.303 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-28 05:21:08.314 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
