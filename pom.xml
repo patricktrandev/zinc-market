@@ -188,26 +188,35 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<!-- Prevent test cases errors during Maven building in CI -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<reuseForks>false</reuseForks>
+					<forkCount>1</forkCount>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
 				<version>3.4.5</version>
-				<configuration>
-					<from>
-						<image>eclipse-temurin:17-jre-focal</image> </from>
-					<to>
-						<image>registry.hub.docker.com/patrickdevcoffee/zinc-be</image>
-					</to>
+<!--				<configuration>-->
+<!--					<from>-->
+<!--						<image>eclipse-temurin:17-jre-focal</image> </from>-->
+<!--					<to>-->
+<!--						<image>docker.io/patrickdevcoffee/zinc-be</image>-->
+<!--					</to>-->
 
-				<container>
-					<mainClass>cloud.tientn.zinc.ZincApplication</mainClass> <ports>
-					<port>8080</port> </ports>
-					<jvmFlags>
-						<jvmFlag>-Xms512m</jvmFlag>
-						<jvmFlag>-Xmx1024m</jvmFlag>
-					</jvmFlags>
-				</container>
-				<allowInsecureRegistries>false</allowInsecureRegistries>
-				</configuration>
+<!--				<container>-->
+<!--					<mainClass>cloud.tientn.zinc.ZincApplication</mainClass> <ports>-->
+<!--					<port>8080</port> </ports>-->
+<!--					<jvmFlags>-->
+<!--						<jvmFlag>-Xms512m</jvmFlag>-->
+<!--						<jvmFlag>-Xmx1024m</jvmFlag>-->
+<!--					</jvmFlags>-->
+<!--				</container>-->
+<!--				<allowInsecureRegistries>false</allowInsecureRegistries>-->
+<!--				</configuration>-->
 			</plugin>
 		</plugins>
 	</build>
