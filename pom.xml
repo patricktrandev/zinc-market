@@ -31,15 +31,6 @@
 		<spring-cloud-azure.version>5.22.0</spring-cloud-azure.version>
 	</properties>
 	<dependencies>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -188,11 +179,23 @@
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
 				<version>3.4.5</version>
-<!--				<configuration>-->
-<!--					<to>-->
-<!--						<image>registry.hub.docker.com/patrickdevcoffee/zincbe</image>-->
-<!--					</to>-->
-<!--				</configuration>-->
+				<configuration>
+					<from>
+						<image>eclipse-temurin:17-jre-focal</image> </from>
+					<to>
+						<image>registry.hub.docker.com/patrickdevcoffee/zinc-be</image>
+					</to>
+
+				<container>
+					<mainClass>cloud.tientn.zinc.ZincApplication</mainClass> <ports>
+					<port>8080</port> </ports>
+					<jvmFlags>
+						<jvmFlag>-Xms512m</jvmFlag>
+						<jvmFlag>-Xmx1024m</jvmFlag>
+					</jvmFlags>
+				</container>
+				<allowInsecureRegistries>false</allowInsecureRegistries>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
