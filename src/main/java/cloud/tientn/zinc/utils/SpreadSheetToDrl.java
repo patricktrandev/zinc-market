@@ -11,9 +11,9 @@ import java.net.URL;
 import java.util.Objects;
 
 public class SpreadSheetToDrl {
-    public static void main(String[] args) {
-        generateDrl();
-    }
+//    public static void main(String[] args) {
+//        generateDrl();
+//    }
 
     public static void generateDrl(){
         try{

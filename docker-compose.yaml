@@ -1,0 +1,58 @@
+services:
+  mysql8-container:
+    container_name: mysql8-container
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: myadmin123
+      MYSQL_DATABASE: zinc
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -pmyadmin123"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+    networks:
+      - zinc-network
+
+  phpmyadmin8-container:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin8-container
+    restart: always
+    depends_on:
+      - mysql8-container
+    ports:
+      - "8100:80" #port mapping
+    environment:
+      PMA_HOST: mysql8-container #phpMyAdmin Host, PMA = PHP My Amin
+      MYSQL_ROOT_PASSWORD: myadmin123
+      UPLOAD_LIMIT: 500M
+    networks:
+      - zinc-network
+
+  backend-app:
+    image: patrickdevcoffee/zinc-be
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql8-container:3306/zinc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&autoReconnect=true&socketTimeout=30000
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: myadmin123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql8-container:
+        condition: service_healthy
+    networks:
+      - zinc-network
+volumes:
+  mysql_data:
+
+networks:
+  zinc-network:
+    driver: bridge
+#docker-compose up -d
+#docker compose down -v
