@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public class OrderController {
     private final OrderService orderService;
     @PostMapping
     public ResponseEntity<Response> createProduct(@Valid @RequestBody OrderDto orderDto){
-        String username= "testuser2";
-        Long id= orderService.createOrder(orderDto,username);
+        var securityContext= SecurityContextHolder.getContext();
+        String name=securityContext.getAuthentication().getName();
+        Long id= orderService.createOrder(orderDto,name);
         return new ResponseEntity<>(new Response(true, StatusCode.CREATED,"Create Product successfully", id), HttpStatus.CREATED);
     }
 

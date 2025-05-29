@@ -10,6 +10,7 @@ services:
       - 3307:3306
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql-init-scripts:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -uroot -pmyadmin123"]
       interval: 10s
@@ -56,3 +57,5 @@ networks:
     driver: bridge
 #docker-compose up -d
 #docker compose down -v
+
+#./mvnw compile jib:build -Dimage=patrickdevcoffee/zinc-be

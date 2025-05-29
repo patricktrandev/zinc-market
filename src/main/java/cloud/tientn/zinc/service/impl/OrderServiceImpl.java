@@ -88,28 +88,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void processBatchOrders() {
-        Order savedOrder1=orderRepository.findById(34L).orElseThrow(()-> new ResourceNotFoundException("Order", 34L));
-        Order savedOrder2=orderRepository.findById(35L).orElseThrow(()-> new ResourceNotFoundException("Order", 35L));
-        Order savedOrder3=orderRepository.findById(36L).orElseThrow(()-> new ResourceNotFoundException("Order", 36L));
-        Order savedOrder4=orderRepository.findById(39L).orElseThrow(()-> new ResourceNotFoundException("Order", 39L));
-        Order savedOrder5=orderRepository.findById(40L).orElseThrow(()-> new ResourceNotFoundException("Order", 39L));
-        Order savedOrder6=orderRepository.findById(41L).orElseThrow(()-> new ResourceNotFoundException("Order", 39L));
-        Order savedOrder7=orderRepository.findById(42L).orElseThrow(()-> new ResourceNotFoundException("Order", 39L));
-
-        List<Order> orderQueue = new ArrayList<>();
-        orderQueue.add(savedOrder1);
-        orderQueue.add(savedOrder2);
-        orderQueue.add(savedOrder3);
-        orderQueue.add(savedOrder4);
-        orderQueue.add(savedOrder5);
-        orderQueue.add(savedOrder6);
-        orderQueue.add(savedOrder7);
-        PriorityHelper.mergeSortOrders(orderQueue);
+        List<Order> orders= orderRepository.findByStatus("NEW");
+        PriorityHelper.mergeSortOrders(orders);
         KieSession kieSession = droolsThread.getKieSession();
         try{
             droolsThread.start();
             TimeUtils.resetClock();
-            droolsThread.addFactToSession(orderQueue);
+            droolsThread.addFactToSession(orders);
 
 
         }catch (Exception e){

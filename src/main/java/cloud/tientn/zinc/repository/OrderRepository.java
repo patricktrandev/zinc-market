@@ -24,4 +24,6 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
             "join product as p on p.id= oi.product_id \n" +
             "where oi.order_id=:orderId")
     List<OrderItemByOrderImpl> queryOrderDetailsById(@Param("orderId") Long orderId);
+
+    List<Order> findByStatus(String status);
 }
