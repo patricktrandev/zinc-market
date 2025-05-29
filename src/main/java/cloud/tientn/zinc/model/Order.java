@@ -4,11 +4,8 @@ import cloud.tientn.zinc.config.BaseAudit;
 import cloud.tientn.zinc.utils.PriorityHelper;
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Objects;
 
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(

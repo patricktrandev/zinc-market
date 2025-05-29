@@ -4,6 +4,7 @@ import cloud.tientn.zinc.model.Customer;
 import cloud.tientn.zinc.model.Role;
 import cloud.tientn.zinc.response.CustomerDto;
 import cloud.tientn.zinc.response.Response;
+import cloud.tientn.zinc.response.TokenPair;
 import cloud.tientn.zinc.response.converter.CustomerMapper;
 import cloud.tientn.zinc.service.CustomerService;
 import cloud.tientn.zinc.utils.StatusCode;
@@ -29,6 +30,11 @@ public class CustomerController {
 
         CustomerDto saved = CustomerMapper.convertToDto(savedAccount);
         return new ResponseEntity<>(new Response(true, StatusCode.CREATED,"Create account successfully",saved), HttpStatus.CREATED);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<Response> loginByAnonymousUser(@RequestBody Customer customer){
+        TokenPair token =customerService.authenticate(customer);
+        return new ResponseEntity<>(new Response(true, StatusCode.SUCCESS,"users info and jwt", token),HttpStatus.OK);
     }
     @GetMapping("/customers/{id}")
     public ResponseEntity<Response> getCustomerByIdAuthorizedByAdmin(@PathVariable Long id){

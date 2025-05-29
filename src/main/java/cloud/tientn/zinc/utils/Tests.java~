@@ -164,13 +164,13 @@ public class Tests {
         Or o5= new Or(5,"NORMAL",LocalDateTime.now());
         Or o6= new Or(6,"URGENT",LocalDateTime.now());
         Or o7= new Or(7,"TWOHOURS",LocalDateTime.now());
-        Comparator<Or> orderComparator = (a1, a2) -> {
-            //int cmp = PriorityHelper.comparePriority(a1.p, a2.p);
-            if (cmp == 0) {
-                return a1.t.compareTo(a2.t);
-            }
-            return cmp;
-        };
+//        Comparator<Or> orderComparator = (a1, a2) -> {
+//            //int cmp = PriorityHelper.comparePriority(a1.p, a2.p);
+//            if (cmp == 0) {
+//                return a1.t.compareTo(a2.t);
+//            }
+//            return cmp;
+//        };
 //        PriorityQueue<Or> orderQueue = new PriorityQueue<>(orderComparator);
 //        orderQueue.add(o1);
 //        orderQueue.add(o2);

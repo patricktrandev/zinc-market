@@ -3,6 +3,8 @@ package cloud.tientn.zinc.exception;
 import cloud.tientn.zinc.response.Response;
 import cloud.tientn.zinc.utils.StatusCode;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -37,8 +39,8 @@ public class GlobalExceptionHandler {
     Response handleCustomBlobException(ResourceAlreadyExistException ex){
         return new Response(false, StatusCode.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
-    //@ExceptionHandler({UsernameNotFoundException.class, BadCredentialsException.class})
-    //@ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler({UsernameNotFoundException.class, BadCredentialsException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     Response handleAuthException(Exception ex){
         return new Response(false, StatusCode.UNAUTHORIZED, "Username or password is incorrect");
     }
