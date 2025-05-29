@@ -15,13 +15,13 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 @Service
-public class PeriodicallyFiringRulesService extends Thread implements DroolsThread{
+public class PeriodicallyFiringRulesService extends Thread implements DroolsThread {
     boolean run = false;
     final KieSession kieSession;
+
     public PeriodicallyFiringRulesService() {
 
 
@@ -70,7 +70,6 @@ public class PeriodicallyFiringRulesService extends Thread implements DroolsThre
         }
 
 
-
     }
 
     @Override
@@ -81,12 +80,11 @@ public class PeriodicallyFiringRulesService extends Thread implements DroolsThre
     public void run() {
         while (run) {
             kieSession.fireAllRules();
-
-
             sleepMs(500);
         }
     }
-        private void sleepMs(int millis) {
+
+    private void sleepMs(int millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {

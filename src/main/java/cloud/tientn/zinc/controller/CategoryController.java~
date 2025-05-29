@@ -1,5 +1,6 @@
 package cloud.tientn.zinc.controller;
 
+import cloud.tientn.zinc.model.Category;
 import cloud.tientn.zinc.response.CategoryDto;
 import cloud.tientn.zinc.response.Response;
 import cloud.tientn.zinc.response.converter.CategoryMapper;
