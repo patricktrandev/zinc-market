@@ -53,7 +53,6 @@ public class OrderServiceImpl implements OrderService {
         current.setStatus(OrderStatusUtils.NEW.name());
         current.setPriority(orderDto.getPriority());
 
-
         try{
             kieSession.execute(Arrays.asList(current, customer));
 
@@ -61,19 +60,16 @@ public class OrderServiceImpl implements OrderService {
         }catch (Exception e){
             e.printStackTrace();}
 
-        log.info(String.valueOf(current.getDiscount()));
-        log.info(String.valueOf(current.getStatus()));
-        log.info(String.valueOf(current.getCustomer().getNumberTotalOrder()));
-
-        log.info(customer.getMembership());
+//        log.info(String.valueOf(current.getDiscount()));
+//        log.info(String.valueOf(current.getStatus()));
+//        log.info(String.valueOf(current.getCustomer().getNumberTotalOrder()));
+//
+//        log.info(customer.getMembership());
         Double discountValue= current.getDiscount();
         String orderJson= convertOrderItemsToJson(orderDto.getOrders());
         Long orderId= orderRepository.processOrder(
             customer.getId(),orderDto.getShippingAddress(), current.getDiscount(), current.getPriority(), current.getStatus(),orderJson
         );
-
-
-
 
         return orderId;
     }
