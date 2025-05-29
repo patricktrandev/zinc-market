@@ -21,8 +21,3 @@ jobs:
           cache: maven
       - name: Build and test with Maven
         run: mvn --batch-mode package
-#      - name: Build and push Docker image with Jib
-#        run: mvn compile jib:build
-#        env:
-#          JIB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#          JIB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
