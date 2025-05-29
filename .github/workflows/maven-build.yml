@@ -1,2 +1,28 @@
 
 
+name: Java CI with Maven
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+      - name: set up jdk 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build and test with Maven
+        run: mvn --batch-mode package
+      - name: Build and push Docker image with Jib
+        run: mvn compile jib:build
+        env:
+          JIB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          JIB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

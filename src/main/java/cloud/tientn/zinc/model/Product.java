@@ -30,6 +30,8 @@ public class Product extends BaseAudit {
     private Category category;
 
 
+
+
     public void addCategoryToProduct(Category category){
         this.setCategory(category);
         category.getProducts().add(this);
