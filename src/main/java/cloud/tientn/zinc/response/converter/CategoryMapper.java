@@ -2,6 +2,7 @@ package cloud.tientn.zinc.response.converter;
 
 import cloud.tientn.zinc.model.Category;
 import cloud.tientn.zinc.response.CategoryDto;
+import cloud.tientn.zinc.response.ProductDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +18,12 @@ public class CategoryMapper {
         return c;
     }
     public static CategoryDto convertToDto(Category source) {
-
+        List<ProductDto> productDtos= source.getProducts().stream().map(ProductMapper::convertToDto).toList();
         CategoryDto c= CategoryDto.builder()
                 .id(source.getId())
                 .name(source.getName())
                 .numberOfProduct(source.getTotalProducts())
+                .productDtos(productDtos)
                 .build();
         return c;
     }

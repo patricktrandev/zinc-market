@@ -25,7 +25,7 @@ public class Product extends BaseAudit {
     private Float price;
     private String thumbnail;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 

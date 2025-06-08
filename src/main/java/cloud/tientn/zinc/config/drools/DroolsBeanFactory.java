@@ -74,7 +74,6 @@ public class DroolsBeanFactory {
     public StatelessKieSession getKieSession(){
         KieServices ks = KieServices.Factory.get();
         KieFileSystem kfs = ks.newKieFileSystem();
-        //kfs.write(ResourceFactory.newClassPathResource("rules/section9/step1/VisaApplicationRules.drl.xls"));
         kfs.write(ResourceFactory.newClassPathResource("rules/discountOrder/DiscountOrder.drl.xls"));
 
         KieBuilder kb = ks.newKieBuilder(kfs);

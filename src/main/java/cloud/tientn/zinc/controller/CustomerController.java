@@ -38,7 +38,7 @@ public class CustomerController {
     }
     @GetMapping("/customers/{id}")
     public ResponseEntity<Response> getCustomerByIdAuthorizedByAdmin(@PathVariable Long id){
-        CustomerDto found = CustomerMapper.convertToDto(customerService.findByCustomerId(id));
+        CustomerDto found = CustomerMapper.convertToDto(customerService.viewProfileById(id));
 
 
         return new ResponseEntity<>(new Response(true, StatusCode.SUCCESS,"Find one successfully",found), HttpStatus.OK);

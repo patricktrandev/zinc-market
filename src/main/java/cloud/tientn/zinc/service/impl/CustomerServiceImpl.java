@@ -50,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Customer findByCustomerId(Long id) {
+    public Customer viewProfileById(Long id) {
         Customer found= customerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Id",id));
         return found;
     }

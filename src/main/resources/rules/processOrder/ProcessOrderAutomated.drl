@@ -39,11 +39,12 @@ rule "Report processing statistics"
 	salience 100
     timer(int: 0s 2s)
 when
+    $order: Order()
     $queue : List() from collect( Order() )
     $events: List() from collect(TimeWaited() over window:time(4s))
     $avg: Double() from accumulate(
         TimeWaited($t: time) over window:time(4s),
         average($t))
 then
-    System.out.println("Queue size: "+ $queue.size() +" Average wait time: " + $avg/1000 + "ms in the last 4 seconds.");
+    System.out.println("Queue size: "+ $queue.size() +" Average wait time: " + $avg/1000 + "ms in the last 4 seconds, process order id= "+ $order.getId() +", status="+ $order.getStatus());
 end

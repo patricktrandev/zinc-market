@@ -17,5 +17,5 @@ public class ProductDto{
         Integer quantity;
         Float price;
         String thumbnail;
-        CategoryDto category;
+       // CategoryDto category;
 }
