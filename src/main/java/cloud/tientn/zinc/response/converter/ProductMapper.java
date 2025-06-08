@@ -9,7 +9,7 @@ public class ProductMapper {
         Product product=new Product();
         product.setId(source.getId());
         product.setName(source.getName());
-        product.setCategory(source.getCategory()!=null?CategoryMapper.convertToModel(source.getCategory()):null);
+        //product.setCategory(source.getCategory()!=null?CategoryMapper.convertToModel(source.getCategory()):null);
         product.setIsActive(source.getIsActive());
         product.setDescription(source.getDescription());
         product.setQuantity(source.getQuantity());
@@ -23,7 +23,7 @@ public class ProductMapper {
                 .name(source.getName())
                 .price(source.getPrice())
                 .isActive(source.getIsActive())
-                .category(source.getCategory()!=null? CategoryMapper.convertToDto(source.getCategory()):null)
+                //.category(source.getCategory()!=null? CategoryMapper.convertToDto(source.getCategory()):null)
                 .quantity(source.getQuantity())
                 .description(source.getDescription())
                 .thumbnail(source.getThumbnail())

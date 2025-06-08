@@ -66,7 +66,7 @@ public class PeriodicallyFiringRulesService extends Thread implements DroolsThre
             System.out.print(TimeUtils.getCurrentTime());
             System.out.println("Inserting to session: " + o);
             kieSession.insert(o);
-            sleepMs(1000);
+            sleepMs(2500);
         }
 
 
